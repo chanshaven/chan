@@ -1,0 +1,1093 @@
+/* ==============================
+   RESET
+============================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    font-family:
+        "Nunito",
+        "Avenir Next",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    color: #5d454f;
+
+    background:
+        linear-gradient(145deg,
+            #fff7fb 0%,
+            #ffeef5 35%,
+            #f9edff 70%,
+            #fff8ed 100%);
+}
+
+
+/* ==============================
+   BACKGROUND
+============================== */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+.blob {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(12px);
+
+    opacity: 0.45;
+
+    animation:
+        blobMove 12s ease-in-out infinite alternate;
+}
+
+
+.blob-1 {
+    width: 350px;
+    height: 350px;
+
+    top: -100px;
+    left: -80px;
+
+    background: #ffd3e1;
+}
+
+
+.blob-2 {
+    width: 450px;
+    height: 450px;
+
+    right: -160px;
+    bottom: -140px;
+
+    background: #e2d4ff;
+
+    animation-delay: -4s;
+}
+
+
+.blob-3 {
+    width: 250px;
+    height: 250px;
+
+    right: 15%;
+    top: 15%;
+
+    background: #fff0b9;
+
+    animation-delay: -7s;
+}
+
+
+@keyframes blobMove {
+
+    from {
+        transform:
+            translate(0, 0) scale(1);
+    }
+
+    to {
+        transform:
+            translate(40px, 30px) scale(1.15);
+    }
+}
+
+
+/* CLOUDS */
+
+.cloud {
+    position: absolute;
+
+    color:
+        rgba(255,
+            255,
+            255,
+            0.72);
+
+    filter:
+        drop-shadow(0 8px 10px rgba(216,
+                172,
+                193,
+                0.10));
+
+    user-select: none;
+}
+
+
+.cloud-1 {
+    top: 12%;
+    left: 8%;
+
+    font-size: 75px;
+
+    animation:
+        cloudFloat 12s ease-in-out infinite;
+}
+
+
+.cloud-2 {
+    right: 9%;
+    top: 26%;
+
+    font-size: 105px;
+
+    animation:
+        cloudFloat 15s ease-in-out infinite reverse;
+}
+
+
+.cloud-3 {
+    left: 16%;
+    bottom: 7%;
+
+    font-size: 90px;
+
+    animation:
+        cloudFloat 14s ease-in-out infinite;
+}
+
+
+@keyframes cloudFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0) translateX(0);
+    }
+
+    50% {
+        transform:
+            translateY(-18px) translateX(15px);
+    }
+}
+
+
+/* ==============================
+   FLOATING DECORATION
+============================== */
+
+.floating-layer {
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+.float-item {
+    position: absolute;
+
+    bottom: -50px;
+
+    opacity: 0;
+
+    user-select: none;
+
+    animation:
+        floatUp linear forwards;
+}
+
+
+@keyframes floatUp {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(0) rotate(0deg) scale(0.7);
+    }
+
+    15% {
+        opacity: 0.7;
+    }
+
+    80% {
+        opacity: 0.55;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-115vh) rotate(25deg) scale(1.2);
+    }
+}
+
+
+/* ==============================
+   CARD
+============================== */
+
+.card {
+    position: relative;
+
+    z-index: 10;
+
+    width: min(92vw, 470px);
+
+    min-height: 570px;
+
+    padding:
+        55px 42px 38px;
+
+    border:
+        1px solid rgba(255,
+            255,
+            255,
+            0.85);
+
+    border-radius: 38px;
+
+    background:
+        rgba(255,
+            255,
+            255,
+            0.78);
+
+    backdrop-filter:
+        blur(22px);
+
+    -webkit-backdrop-filter:
+        blur(22px);
+
+    box-shadow:
+        0 30px 80px rgba(164,
+            94,
+            127,
+            0.16),
+        inset 0 1px 1px rgba(255,
+            255,
+            255,
+            0.9);
+
+    text-align: center;
+
+    /*
+        Quan trọng:
+        Không đặt overflow:hidden,
+        vì nút Không được phép
+        lòi ra card khoảng 12px.
+    */
+    overflow: visible;
+
+    animation:
+        cardEnter 0.9s cubic-bezier(.2,
+            .8,
+            .2,
+            1);
+}
+
+
+@keyframes cardEnter {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(35px) scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0) scale(1);
+    }
+}
+
+
+/* RIBBON */
+
+.ribbon {
+    position: absolute;
+
+    top: 21px;
+    right: 26px;
+
+    padding:
+        7px 13px;
+
+    border-radius: 999px;
+
+    background: #fff0f5;
+
+    color: #dc8da8;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+
+    transform:
+        rotate(4deg);
+}
+
+
+/* ==============================
+   BUNNY
+============================== */
+
+.bunny {
+    position: relative;
+
+    width: 100px;
+    height: 115px;
+
+    margin:
+        0 auto 14px;
+}
+
+
+.bunny-face {
+    position: absolute;
+
+    left: 10px;
+    top: 32px;
+
+    width: 80px;
+    height: 73px;
+
+    border-radius:
+        48% 48% 45% 45%;
+
+    background:
+        linear-gradient(150deg,
+            #fff,
+            #fff8fb);
+
+    box-shadow:
+        0 8px 22px rgba(201,
+            143,
+            165,
+            0.18);
+}
+
+
+.ear {
+    position: absolute;
+
+    width: 26px;
+    height: 62px;
+
+    top: 1px;
+
+    border-radius:
+        50% 50% 45% 45%;
+
+    background: #fff;
+}
+
+
+.ear::after {
+    content: "";
+
+    position: absolute;
+
+    inset:
+        8px 7px;
+
+    border-radius: 50%;
+
+    background: #ffd3e1;
+}
+
+
+.ear-left {
+    left: 19px;
+
+    transform:
+        rotate(-13deg);
+}
+
+
+.ear-right {
+    right: 19px;
+
+    transform:
+        rotate(13deg);
+}
+
+
+.eye {
+    position: absolute;
+
+    top: 30px;
+
+    width: 7px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #5b474f;
+}
+
+
+.eye-left {
+    left: 23px;
+}
+
+
+.eye-right {
+    right: 23px;
+}
+
+
+.blush {
+    position: absolute;
+
+    top: 43px;
+
+    width: 16px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,
+            153,
+            187,
+            0.45);
+
+    filter:
+        blur(1px);
+}
+
+
+.blush-left {
+    left: 10px;
+}
+
+
+.blush-right {
+    right: 10px;
+}
+
+
+.mouth {
+    position: absolute;
+
+    left: 50%;
+    top: 41px;
+
+    transform:
+        translateX(-50%);
+
+    font-size: 15px;
+
+    color: #8e6573;
+}
+
+
+/* ==============================
+   TEXT
+============================== */
+
+.tiny-title {
+    margin:
+        3px 0 12px;
+
+    color: #d989a5;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+}
+
+
+h1 {
+    margin: 0;
+
+    color: #59424a;
+
+    font-size:
+        clamp(29px,
+            7vw,
+            41px);
+
+    line-height: 1.15;
+
+    letter-spacing: -1.3px;
+}
+
+
+h1 span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #e786a6;
+}
+
+
+.subtitle {
+    margin:
+        15px 0 0;
+
+    color: #a88b95;
+
+    font-size: 15px;
+}
+
+
+.mini-heart {
+    display: inline-block;
+
+    color: #ef8aaa;
+
+    animation:
+        tinyHeartbeat 1s infinite;
+}
+
+
+@keyframes tinyHeartbeat {
+
+    50% {
+        transform:
+            scale(1.25);
+    }
+}
+
+
+/* ==============================
+   BUTTON AREA
+============================== */
+
+.button-zone {
+    position: relative;
+
+    width: 290px;
+    height: 112px;
+
+    margin:
+        29px auto 0;
+}
+
+
+button {
+    font-family: inherit;
+
+    border: none;
+
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
+
+/*
+    Chỉ chia sẻ kích thước.
+    KHÔNG đặt pointer-events chung.
+*/
+
+.yes-btn,
+.no-btn {
+    position: absolute;
+
+    width: 122px;
+    height: 49px;
+
+    top: 10px;
+
+    border-radius: 999px;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    user-select: none;
+}
+
+
+/* ==============================
+   YES
+============================== */
+
+.yes-btn {
+    left: 8px;
+    right: auto;
+
+    color: white;
+
+    background:
+        linear-gradient(135deg,
+            #f59ab6,
+            #ea769d);
+
+    box-shadow:
+        0 11px 24px rgba(233,
+            117,
+            156,
+            0.30);
+
+    cursor: pointer;
+
+    /*
+       Cóooo click bình thường.
+    */
+    pointer-events: auto;
+
+    z-index: 30;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.yes-btn:hover {
+    transform:
+        translateY(-2px) scale(1.07);
+
+    box-shadow:
+        0 15px 30px rgba(233,
+            117,
+            156,
+            0.35);
+}
+
+
+.yes-btn:active {
+    transform:
+        scale(0.95);
+}
+
+
+/* ==============================
+   NO
+============================== */
+
+.no-btn {
+    left: auto;
+    right: 8px;
+
+    color: #927b84;
+
+    background:
+        rgba(246,
+            240,
+            243,
+            0.97);
+
+    box-shadow:
+        0 8px 17px rgba(100,
+            70,
+            80,
+            0.08);
+
+    /*
+       Rất quan trọng:
+
+       Desktop không thể click/chạm
+       trực tiếp vào nút Không.
+
+       JS sẽ tự phát hiện vị trí chuột.
+    */
+    pointer-events: none;
+
+    cursor: default;
+
+    z-index: 999;
+
+    /*
+       Né rất nhanh.
+
+       Mỗi lần JS chỉ dịch 58px,
+       nhưng transition chỉ 70ms.
+    */
+    transition:
+        left 0.07s cubic-bezier(.2, .85, .2, 1),
+        top 0.07s cubic-bezier(.2, .85, .2, 1);
+
+    will-change:
+        left,
+        top;
+}
+
+
+.hint {
+    margin:
+        -16px 0 0;
+
+    color: #c5aeb6;
+
+    font-size: 12px;
+}
+
+
+/* ==============================
+   RESULT
+============================== */
+
+.hidden {
+    display: none !important;
+}
+
+
+.result-screen {
+    padding-top: 15px;
+}
+
+
+.success-icon {
+    width: 92px;
+    height: 92px;
+
+    margin:
+        5px auto 20px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    color: #eb83a5;
+
+    font-size: 58px;
+
+    background:
+        linear-gradient(145deg,
+            #fff0f6,
+            #fff9fc);
+
+    box-shadow:
+        0 15px 35px rgba(232,
+            129,
+            164,
+            0.18);
+
+    animation:
+        heartPulse 1.5s infinite;
+}
+
+
+@keyframes heartPulse {
+
+    0%,
+    100% {
+        transform:
+            scale(1);
+    }
+
+    50% {
+        transform:
+            scale(1.09);
+    }
+}
+
+
+.result-title {
+    font-size:
+        clamp(27px,
+            6vw,
+            37px);
+}
+
+
+/* OPTIONAL PHOTO */
+
+.photo-wrapper {
+    position: relative;
+
+    width: 180px;
+
+    margin:
+        25px auto 22px;
+
+    transform:
+        rotate(-3deg);
+
+    animation:
+        photoPop 0.75s cubic-bezier(.2,
+            1.3,
+            .3,
+            1);
+}
+
+
+.result-photo {
+    width: 180px;
+    height: 180px;
+
+    display: block;
+
+    object-fit: cover;
+
+    border:
+        9px solid white;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 18px 35px rgba(145,
+            87,
+            110,
+            0.20);
+}
+
+
+.photo-tape {
+    position: absolute;
+
+    top: -13px;
+    left: 50%;
+
+    width: 68px;
+
+    padding:
+        5px 0;
+
+    transform:
+        translateX(-50%) rotate(3deg);
+
+    background:
+        rgba(255,
+            218,
+            229,
+            0.88);
+
+    color: #d87e9b;
+}
+
+
+@keyframes photoPop {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.65) rotate(-10deg);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1) rotate(-3deg);
+    }
+}
+
+
+/* MESSAGE */
+
+.message-box {
+    position: relative;
+
+    margin:
+        27px auto 18px;
+
+    padding:
+        21px 26px;
+
+    max-width: 320px;
+
+    border-radius: 23px;
+
+    color: #927782;
+
+    background:
+        rgba(255,
+            242,
+            247,
+            0.82);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+}
+
+
+.message-box p {
+    margin: 0;
+}
+
+
+.quote {
+    position: absolute;
+
+    left: 10px;
+    top: -9px;
+
+    color: #e9a5ba;
+
+    font-size: 42px;
+}
+
+
+.quote-end {
+    left: auto;
+    right: 10px;
+
+    top: auto;
+    bottom: -27px;
+}
+
+
+.ending {
+    margin:
+        19px 0 20px;
+
+    color: #9c7b86;
+
+    font-size: 15px;
+}
+
+
+.ending span {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #df8ca7;
+
+    font-size: 20px;
+}
+
+
+.again-btn {
+    padding:
+        11px 22px;
+
+    border-radius: 999px;
+
+    background: #fff0f5;
+
+    color: #dc83a0;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.again-btn:hover {
+    transform:
+        scale(1.05);
+}
+
+
+/* ==============================
+   CONFETTI
+============================== */
+
+.confetti {
+    position: fixed;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    animation:
+        confettiFly 1.2s ease-out forwards;
+}
+
+
+@keyframes confettiFly {
+
+    from {
+        opacity: 1;
+
+        transform:
+            translate(0, 0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+
+        transform:
+            translate(var(--x),
+                var(--y)) rotate(var(--r)) scale(0.4);
+    }
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 520px) {
+
+    body {
+        align-items: center;
+    }
+
+
+    .card {
+        width: 90vw;
+
+        min-height: 540px;
+
+        padding:
+            49px 23px 30px;
+
+        border-radius: 31px;
+    }
+
+
+    .button-zone {
+        width: 265px;
+    }
+
+
+    .yes-btn,
+    .no-btn {
+        width: 112px;
+    }
+
+
+    .cloud-2 {
+        font-size: 70px;
+    }
+
+}
+
+
+/* VERY SMALL PHONE */
+
+@media (max-height: 670px) {
+
+    .card {
+        transform:
+            scale(0.88);
+    }
+
+}
