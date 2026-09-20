@@ -6,93 +6,144 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Một câu hỏi nhỏ ♡</title>
+    <title>Vk chiến đo ♡</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- BACKGROUND -->
+    <!-- =========================
+         SKY BACKGROUND
+    ========================== -->
 
-    <div class="background">
+    <div class="sky-background">
 
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
+        <div class="sun-glow"></div>
 
-        <div class="cloud cloud-1">☁</div>
-        <div class="cloud cloud-2">☁</div>
-        <div class="cloud cloud-3">☁</div>
+        <div class="sky-cloud cloud-a">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="sky-cloud cloud-b">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="sky-cloud cloud-c">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="sky-cloud cloud-d">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="sky-cloud cloud-e">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
 
     </div>
 
 
-    <!-- FLOATING HEARTS / STARS -->
+    <!-- =========================
+         FLOATING HEARTS / STARS
+    ========================== -->
 
     <div id="floatingLayer" class="floating-layer"></div>
 
 
-    <!-- CARD -->
+    <!-- =========================
+         CARD
+    ========================== -->
 
     <main class="card" id="card">
 
         <div class="ribbon">
-            for you ♡
+            Sâu iu ♡
         </div>
 
 
-        <!-- QUESTION -->
+        <!-- =====================
+             QUESTION
+        ====================== -->
 
         <section id="questionScreen" class="screen question-screen">
 
-            <div class="bunny">
+            <!-- CUTE WORM -->
 
-                <div class="ear ear-left"></div>
-                <div class="ear ear-right"></div>
+            <div class="worm-mascot">
 
-                <div class="bunny-face">
+                <div class="worm-segment segment-tail"></div>
+                <div class="worm-segment segment-mid"></div>
 
-                    <div class="eye eye-left"></div>
-                    <div class="eye eye-right"></div>
+                <div class="worm-segment segment-head">
 
-                    <div class="blush blush-left"></div>
-                    <div class="blush blush-right"></div>
+                    <div class="worm-antenna antenna-left"></div>
+                    <div class="worm-antenna antenna-right"></div>
 
-                    <div class="mouth">
+                    <div class="worm-bow">
+                        <span></span>
+                        <span></span>
+                        <i></i>
+                    </div>
+
+                    <div class="worm-eye worm-eye-left"></div>
+                    <div class="worm-eye worm-eye-right"></div>
+
+                    <div class="worm-lash lash-left"></div>
+                    <div class="worm-lash lash-right"></div>
+
+                    <div class="worm-blush blush-left"></div>
+                    <div class="worm-blush blush-right"></div>
+
+                    <div class="worm-mouth">
                         ᴗ
                     </div>
 
                 </div>
 
+                <div class="worm-arm arm-left"></div>
+                <div class="worm-arm arm-right"></div>
+
             </div>
 
 
             <p class="tiny-title">
-                ✦ có một câu hỏi bé xíu ✦
+                ✦ Hello vk chiến đo ✦
             </p>
 
 
             <h1>
-                Anh có thấy
-                <span>em xinh không?</span>
+                Em có
+                <span>yêu anh không?</span>
             </h1>
 
 
             <p class="subtitle">
-                suy nghĩ thật kỹ nhaaaa
+                Suy nghĩ cho kỹ nha, không chọn bừa đâu đấy
                 <span class="mini-heart">♡</span>
             </p>
 
 
+            <!-- BUTTONS -->
+
             <div class="button-zone" id="buttonZone">
 
                 <button class="yes-btn" id="yesBtn" type="button">
-                    Cóooo ♡
+                    Yêu vô cùng ♡
                 </button>
 
 
-                <button class="no-btn" id="noBtn" type="button" aria-label="Không">
+                <button class="no-btn" id="noBtn" type="button">
                     Không
                 </button>
 
@@ -100,13 +151,15 @@
 
 
             <p class="hint">
-                chọn đúng sẽ có quà đó ✨
+                nhớ em bé của anh ✨
             </p>
 
         </section>
 
 
-        <!-- RESULT -->
+        <!-- =====================
+             RESULT
+        ====================== -->
 
         <section id="resultScreen" class="screen result-screen hidden">
 
@@ -116,40 +169,21 @@
 
 
             <p class="tiny-title">
-                em biết màaa ♡
+                biết ngay màaa ♡
             </p>
 
 
             <h1 class="result-title">
 
-                Đấy, biết ngay
+                Anh biết
 
                 <span>
-                    anh có mắt nhìn mà
+                    em yêu anh nhất
                 </span>
 
                 ✨
 
             </h1>
-
-
-            <!--
-            Nếu muốn dùng ảnh:
-
-            <div class="photo-wrapper">
-
-                <img
-                    src="images/photo.jpg"
-                    alt="cute photo"
-                    class="result-photo"
-                >
-
-                <div class="photo-tape">
-                    ♡
-                </div>
-
-            </div>
-            -->
 
 
             <div class="message-box">
@@ -159,9 +193,7 @@
                 </span>
 
                 <p>
-                    Cảm ơn vì đã lựa chọn
-                    đáp án duy nhất được phép
-                    lựa chọn nha =))
+                    Cảm ơn em vì vẫn luôn ở đây ♡
                 </p>
 
                 <span class="quote quote-end">
@@ -173,7 +205,7 @@
 
             <p class="ending">
 
-                em mãi ủng hộ anh ạ
+                ckdeptraivodoicuaem
 
                 <span>
                     ૮ ˶ᵔ ᵕ ᵔ˶ ა

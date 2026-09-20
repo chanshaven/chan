@@ -28,10 +28,11 @@ const floatingLayer =
 
 
 /* ==========================================
-   FLOATING BACKGROUND
+   FLOATING HEARTS / STARS
 ========================================== */
 
 const floatingSymbols = [
+    "♡",
     "♡",
     "♡",
     "♡",
@@ -62,41 +63,52 @@ function createFloatingItem() {
 
 
     item.style.left =
-        Math.random() * 100
-        + "vw";
+        Math.random()
+        *
+        100
+        +
+        "vw";
 
 
     item.style.fontSize =
-        14
+        15
         +
-        Math.random() * 20
+        Math.random()
+        *
+        23
         +
         "px";
 
 
     item.style.color =
-        Math.random() > 0.35
+        Math.random() > 0.30
 
-            ? "rgba(235,132,166,.38)"
+            ? "rgba(232, 91, 139, .64)"
 
-            : "rgba(179,154,232,.33)";
+            : "rgba(138, 178, 232, .60)";
 
 
     const duration =
         7
         +
-        Math.random() * 5;
+        Math.random()
+        *
+        5;
 
 
     item.style.animationDuration =
-        duration + "s";
+        duration
+        +
+        "s";
 
 
-    floatingLayer.appendChild(item);
+    floatingLayer
+        .appendChild(item);
 
 
     setTimeout(
         () => item.remove(),
+
         duration * 1000
     );
 
@@ -105,65 +117,48 @@ function createFloatingItem() {
 
 setInterval(
     createFloatingItem,
-    650
+    480
 );
 
 
 /* ==========================================
-   NO BUTTON CONFIG
+   NO BUTTON SETTINGS
 ========================================== */
 
-/*
-    Mỗi lần né đúng khoảng 58px.
-*/
-const NO_STEP = 58;
+const NO_STEP =
+    58;
 
 
-/*
-    Chuột còn cách khoảng 115px
-    thì nút đã bắt đầu né.
-*/
-const NO_TRIGGER_DISTANCE = 115;
+const NO_TRIGGER_DISTANCE =
+    115;
 
 
-/*
-    Nút được phép lòi ra ngoài
-    card khoảng 12px.
-*/
-const CARD_OVERFLOW = 12;
+const CARD_OVERFLOW =
+    12;
 
 
-/*
-    Tuyệt đối cách mép màn hình
-    ít nhất khoảng này.
-*/
-const SCREEN_MARGIN = 10;
+const SCREEN_MARGIN =
+    10;
 
 
-/*
-    Không cho chạy quá dồn dập.
-
-    55ms + transition 70ms
-    => phản ứng rất nhanh.
-*/
-const MOVE_COOLDOWN = 55;
+const MOVE_COOLDOWN =
+    55;
 
 
-/*
-    Sau khi mở trang,
-    nút chưa được phép chạy ngay.
-
-    Chỉ "armed" khi chuột đã từng
-    ở xa nút một chút.
-*/
-const ARM_DISTANCE = 155;
+const ARM_DISTANCE =
+    155;
 
 
-let noButtonArmed = false;
+let noButtonArmed =
+    false;
 
-let lastNoMove = 0;
 
-let transitionBusy = false;
+let lastNoMove =
+    0;
+
+
+let transitionBusy =
+    false;
 
 
 /* ==========================================
@@ -178,6 +173,7 @@ function clamp(
 
     return Math.max(
         min,
+
         Math.min(
             value,
             max
@@ -228,24 +224,23 @@ function moveNoButton(
     }
 
 
-    lastNoMove = now;
+    lastNoMove =
+        now;
 
 
     const cardRect =
-        mainCard.getBoundingClientRect();
+        mainCard
+            .getBoundingClientRect();
 
-
-    /*
-        Lấy vị trí hiện tại TRƯỚC KHI
-        chuyển nút ra body.
-    */
 
     const noRect =
-        noBtn.getBoundingClientRect();
+        noBtn
+            .getBoundingClientRect();
 
 
     const yesRect =
-        yesBtn.getBoundingClientRect();
+        yesBtn
+            .getBoundingClientRect();
 
 
     const centerX =
@@ -260,10 +255,6 @@ function moveNoButton(
         noRect.height / 2;
 
 
-    /*
-        Góc chạy ngược khỏi chuột.
-    */
-
     const awayAngle =
         Math.atan2(
             centerY - pointerY,
@@ -271,16 +262,12 @@ function moveNoButton(
         );
 
 
-    /*
-        Bounds:
-
-        - quanh card ±12px
-        - đồng thời KHÔNG vượt màn hình.
-    */
+    /* card ±12px, but never outside screen */
 
     const minX =
         Math.max(
             SCREEN_MARGIN,
+
             cardRect.left
             -
             CARD_OVERFLOW
@@ -289,6 +276,7 @@ function moveNoButton(
 
     const rawMaxX =
         Math.min(
+
             window.innerWidth
             -
             noRect.width
@@ -300,6 +288,7 @@ function moveNoButton(
             noRect.width
             +
             CARD_OVERFLOW
+
         );
 
 
@@ -313,6 +302,7 @@ function moveNoButton(
     const minY =
         Math.max(
             SCREEN_MARGIN,
+
             cardRect.top
             -
             CARD_OVERFLOW
@@ -321,6 +311,7 @@ function moveNoButton(
 
     const rawMaxY =
         Math.min(
+
             window.innerHeight
             -
             noRect.height
@@ -332,6 +323,7 @@ function moveNoButton(
             noRect.height
             +
             CARD_OVERFLOW
+
         );
 
 
@@ -341,13 +333,6 @@ function moveNoButton(
             rawMaxY
         );
 
-
-    /*
-        Nếu hướng thẳng bị mép card chặn,
-        thử nhiều hướng lệch.
-
-        Vẫn luôn ưu tiên chạy ra xa chuột.
-    */
 
     const angleOffsets = [
         0,
@@ -365,8 +350,10 @@ function moveNoButton(
     let bestX =
         noRect.left;
 
+
     let bestY =
         noRect.top;
+
 
     let bestScore =
         -Infinity;
@@ -378,7 +365,9 @@ function moveNoButton(
     ) {
 
         const angle =
-            awayAngle + offset;
+            awayAngle
+            +
+            offset;
 
 
         let candidateX =
@@ -446,38 +435,44 @@ function moveNoButton(
             noRect.height / 2;
 
 
-        /*
-            Càng xa con trỏ càng tốt.
-        */
-
         const distanceFromPointer =
             Math.hypot(
-                newCenterX - pointerX,
-                newCenterY - pointerY
+
+                newCenterX
+                -
+                pointerX,
+
+                newCenterY
+                -
+                pointerY
+
             );
 
 
-        /*
-            Tránh vị trí bị clamp
-            khiến gần như không di chuyển.
-        */
-
         const actualMovement =
             Math.hypot(
-                candidateX - noRect.left,
-                candidateY - noRect.top
+
+                candidateX
+                -
+                noRect.left,
+
+                candidateY
+                -
+                noRect.top
+
             );
 
 
         let score =
             distanceFromPointer
             +
-            actualMovement * 0.65;
+            actualMovement
+            *
+            0.65;
 
 
         /*
-            Không cho nút Không
-            che lên Cóooo nếu có lựa chọn khác.
+           Don't cover YES.
         */
 
         if (
@@ -512,12 +507,7 @@ function moveNoButton(
 
 
     /*
-        Lần đầu nút chạy:
-
-        đưa nó ra body rồi position:fixed.
-
-        Làm vậy tránh lỗi khi card bị transform
-        trên màn hình điện thoại nhỏ.
+       Move NO to body after first escape.
     */
 
     if (
@@ -535,14 +525,18 @@ function moveNoButton(
     noBtn.style.position =
         "fixed";
 
+
     noBtn.style.right =
         "auto";
+
 
     noBtn.style.left =
         `${bestX}px`;
 
+
     noBtn.style.top =
         `${bestY}px`;
+
 
     noBtn.style.zIndex =
         "9999";
@@ -559,10 +553,6 @@ document.addEventListener(
 
     function (event) {
 
-        /*
-            Touch xử lý riêng ở pointerdown.
-        */
-
         if (
             event.pointerType
             ===
@@ -571,10 +561,6 @@ document.addEventListener(
             return;
         }
 
-
-        /*
-            Chỉ hoạt động ở màn câu hỏi.
-        */
 
         if (
             !resultScreen
@@ -586,7 +572,8 @@ document.addEventListener(
 
 
         const rect =
-            noBtn.getBoundingClientRect();
+            noBtn
+                .getBoundingClientRect();
 
 
         const centerX =
@@ -603,22 +590,25 @@ document.addEventListener(
 
         const distance =
             Math.hypot(
-                event.clientX - centerX,
-                event.clientY - centerY
+
+                event.clientX
+                -
+                centerX,
+
+                event.clientY
+                -
+                centerY
+
             );
 
 
         /*
-            QUAN TRỌNG:
-
-            Khi vừa load:
-            Không KHÔNG tự chạy.
-
-            Chuột phải từng ở xa nút
-            trước khi hệ thống được armed.
+           No automatic movement on load.
         */
 
-        if (!noButtonArmed) {
+        if (
+            !noButtonArmed
+        ) {
 
             if (
                 distance
@@ -626,7 +616,8 @@ document.addEventListener(
                 ARM_DISTANCE
             ) {
 
-                noButtonArmed = true;
+                noButtonArmed =
+                    true;
 
             }
 
@@ -634,13 +625,6 @@ document.addEventListener(
             return;
         }
 
-
-        /*
-            Sau khi armed:
-
-            chuột còn cách 115px
-            thì nút đã né.
-        */
 
         if (
             distance
@@ -662,16 +646,6 @@ document.addEventListener(
 /* ==========================================
    MOBILE
 ========================================== */
-
-/*
-    noBtn có pointer-events:none,
-    nên ta phát hiện tap bằng document.
-
-    Chỉ khi tap thực sự nằm trên / rất gần
-    nút Không thì mới ngăn click và cho né.
-
-    Cóooo hoàn toàn không bị ảnh hưởng.
-*/
 
 document.addEventListener(
     "pointerdown",
@@ -701,48 +675,55 @@ document.addEventListener(
 
 
         const rect =
-            noBtn.getBoundingClientRect();
+            noBtn
+                .getBoundingClientRect();
 
 
         const extra =
-            14;
+            16;
 
 
         const tappedNo =
             event.clientX
             >=
-            rect.left - extra
+            rect.left
+            -
+            extra
 
             &&
 
             event.clientX
             <=
-            rect.right + extra
+            rect.right
+            +
+            extra
 
             &&
 
             event.clientY
             >=
-            rect.top - extra
+            rect.top
+            -
+            extra
 
             &&
 
             event.clientY
             <=
-            rect.bottom + extra;
+            rect.bottom
+            +
+            extra;
 
 
-        if (!tappedNo) {
+        if (
+            !tappedNo
+        ) {
             return;
         }
 
 
-        /*
-            Không cho cú tap xuyên xuống
-            element phía dưới.
-        */
-
         event.preventDefault();
+
         event.stopPropagation();
 
 
@@ -762,7 +743,7 @@ document.addEventListener(
 
 
 /* ==========================================
-   RESET NO BUTTON
+   RESET NO
 ========================================== */
 
 function resetNoButton() {
@@ -770,14 +751,10 @@ function resetNoButton() {
     noButtonArmed =
         false;
 
+
     lastNoMove =
         0;
 
-
-    /*
-        Tắt animation trong lúc
-        đưa nút về vị trí ban đầu.
-    */
 
     noBtn.style.transition =
         "none";
@@ -787,10 +764,6 @@ function resetNoButton() {
         "";
 
 
-    /*
-        Đưa trở lại buttonZone.
-    */
-
     buttonZone
         .appendChild(noBtn);
 
@@ -798,34 +771,28 @@ function resetNoButton() {
     noBtn.style.position =
         "absolute";
 
+
     noBtn.style.left =
         "auto";
+
 
     noBtn.style.right =
         "8px";
 
+
     noBtn.style.top =
         "10px";
+
 
     noBtn.style.zIndex =
         "";
 
-
-    /*
-        Force layout để trình duyệt
-        áp vị trí reset ngay.
-    */
 
     void noBtn.offsetWidth;
 
 
     requestAnimationFrame(
         () => {
-
-            /*
-                Xóa inline transition
-                để dùng lại CSS 0.07s.
-            */
 
             noBtn.style.transition =
                 "";
@@ -845,7 +812,9 @@ yesBtn.addEventListener(
 
     function () {
 
-        if (transitionBusy) {
+        if (
+            transitionBusy
+        ) {
             return;
         }
 
@@ -853,11 +822,6 @@ yesBtn.addEventListener(
         transitionBusy =
             true;
 
-
-        /*
-            Nếu Không đang ở ngoài card,
-            ẩn ngay khi bấm Có.
-        */
 
         noBtn.style.display =
             "none";
@@ -868,14 +832,16 @@ yesBtn.addEventListener(
 
                 [
                     {
-                        opacity: 1,
+                        opacity:
+                            1,
 
                         transform:
                             "translateY(0) scale(1)"
                     },
 
                     {
-                        opacity: 0,
+                        opacity:
+                            0,
 
                         transform:
                             "translateY(-15px) scale(.96)"
@@ -883,11 +849,14 @@ yesBtn.addEventListener(
                 ],
 
                 {
-                    duration: 380,
+                    duration:
+                        380,
 
-                    easing: "ease",
+                    easing:
+                        "ease",
 
-                    fill: "forwards"
+                    fill:
+                        "forwards"
                 }
 
             );
@@ -896,7 +865,8 @@ yesBtn.addEventListener(
         questionAnimation.onfinish =
             function () {
 
-                questionAnimation.cancel();
+                questionAnimation
+                    .cancel();
 
 
                 questionScreen
@@ -914,14 +884,16 @@ yesBtn.addEventListener(
 
                         [
                             {
-                                opacity: 0,
+                                opacity:
+                                    0,
 
                                 transform:
                                     "translateY(24px) scale(.94)"
                             },
 
                             {
-                                opacity: 1,
+                                opacity:
+                                    1,
 
                                 transform:
                                     "translateY(0) scale(1)"
@@ -929,12 +901,14 @@ yesBtn.addEventListener(
                         ],
 
                         {
-                            duration: 650,
+                            duration:
+                                650,
 
                             easing:
                                 "cubic-bezier(.2,.8,.2,1)",
 
-                            fill: "forwards"
+                            fill:
+                                "forwards"
                         }
 
                     );
@@ -945,6 +919,7 @@ yesBtn.addEventListener(
 
                         resultAnimation
                             .cancel();
+
 
                         transitionBusy =
                             false;
@@ -967,11 +942,11 @@ yesBtn.addEventListener(
 function heartExplosion() {
 
     const colors = [
-        "#f28dad",
-        "#ffb3c7",
-        "#d9b8ff",
-        "#ffd87d",
-        "#ff9fbc"
+        "#e65a89",
+        "#ff9dbd",
+        "#9dc7ff",
+        "#ffd46f",
+        "#c49cff"
     ];
 
 
@@ -998,11 +973,15 @@ function heartExplosion() {
 
 
         particle.style.left =
-            centerX + "px";
+            centerX
+            +
+            "px";
 
 
         particle.style.top =
-            centerY + "px";
+            centerY
+            +
+            "px";
 
 
         particle.style.background =
@@ -1065,11 +1044,15 @@ function heartExplosion() {
 
 
         document.body
-            .appendChild(particle);
+            .appendChild(
+                particle
+            );
 
 
         setTimeout(
-            () => particle.remove(),
+            () =>
+                particle.remove(),
+
             1400
         );
 
@@ -1087,7 +1070,9 @@ againBtn.addEventListener(
 
     function () {
 
-        if (transitionBusy) {
+        if (
+            transitionBusy
+        ) {
             return;
         }
 
@@ -1101,14 +1086,16 @@ againBtn.addEventListener(
 
                 [
                     {
-                        opacity: 1,
+                        opacity:
+                            1,
 
                         transform:
                             "translateY(0) scale(1)"
                     },
 
                     {
-                        opacity: 0,
+                        opacity:
+                            0,
 
                         transform:
                             "translateY(15px) scale(.96)"
@@ -1116,11 +1103,14 @@ againBtn.addEventListener(
                 ],
 
                 {
-                    duration: 300,
+                    duration:
+                        300,
 
-                    easing: "ease",
+                    easing:
+                        "ease",
 
-                    fill: "forwards"
+                    fill:
+                        "forwards"
                 }
 
             );
@@ -1129,7 +1119,8 @@ againBtn.addEventListener(
         resultAnimation.onfinish =
             function () {
 
-                resultAnimation.cancel();
+                resultAnimation
+                    .cancel();
 
 
                 resultScreen
@@ -1142,10 +1133,6 @@ againBtn.addEventListener(
                     .remove("hidden");
 
 
-                /*
-                    Reset Không về đúng cạnh Cóooo.
-                */
-
                 resetNoButton();
 
 
@@ -1154,14 +1141,16 @@ againBtn.addEventListener(
 
                         [
                             {
-                                opacity: 0,
+                                opacity:
+                                    0,
 
                                 transform:
                                     "translateY(15px) scale(.97)"
                             },
 
                             {
-                                opacity: 1,
+                                opacity:
+                                    1,
 
                                 transform:
                                     "translateY(0) scale(1)"
@@ -1169,12 +1158,14 @@ againBtn.addEventListener(
                         ],
 
                         {
-                            duration: 450,
+                            duration:
+                                450,
 
                             easing:
                                 "cubic-bezier(.2,.8,.2,1)",
 
-                            fill: "forwards"
+                            fill:
+                                "forwards"
                         }
 
                     );
@@ -1185,6 +1176,7 @@ againBtn.addEventListener(
 
                         questionAnimation
                             .cancel();
+
 
                         transitionBusy =
                             false;
@@ -1198,14 +1190,8 @@ againBtn.addEventListener(
 
 
 /* ==========================================
-   RESIZE / ROTATE
+   RESIZE
 ========================================== */
-
-/*
-    Nếu đổi kích thước cửa sổ / xoay điện thoại,
-    reset Không để chắc chắn không bao giờ
-    nằm ngoài màn hình.
-*/
 
 window.addEventListener(
     "resize",
@@ -1229,10 +1215,5 @@ window.addEventListener(
 /* ==========================================
    INITIAL STATE
 ========================================== */
-
-/*
-    Đảm bảo dù refresh / Live Server reload,
-    Không luôn bắt đầu đúng cạnh Cóooo.
-*/
 
 resetNoButton();

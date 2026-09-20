@@ -18,8 +18,10 @@ body {
     min-height: 100vh;
 
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+
+    position: relative;
 
     overflow: hidden;
 
@@ -31,173 +33,255 @@ body {
         "Segoe UI",
         sans-serif;
 
-    color: #5d454f;
+    color: #513d46;
 
-    background:
-        linear-gradient(145deg,
-            #fff7fb 0%,
-            #ffeef5 35%,
-            #f9edff 70%,
-            #fff8ed 100%);
+    background: #dff4ff;
 }
 
 
 /* ==============================
-   BACKGROUND
+   SKY BACKGROUND
 ============================== */
 
-.background {
+.sky-background {
     position: fixed;
+
     inset: 0;
+
+    z-index: 0;
 
     overflow: hidden;
 
     pointer-events: none;
+
+    background:
+        linear-gradient(145deg,
+            #dff5ff 0%,
+            #e8f5ff 28%,
+            #ffeef6 65%,
+            #fff6dd 100%);
 }
 
 
-.blob {
+/* soft pastel lights */
+
+.sky-background::before {
+    content: "";
+
     position: absolute;
+
+    width: 480px;
+    height: 480px;
+
+    left: -120px;
+    bottom: -160px;
 
     border-radius: 50%;
 
-    filter: blur(12px);
+    background:
+        rgba(255, 181, 211, 0.32);
 
-    opacity: 0.45;
+    filter: blur(70px);
+}
+
+
+.sky-background::after {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    right: -150px;
+    top: -180px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(188, 220, 255, 0.42);
+
+    filter: blur(80px);
+}
+
+
+/* SUN */
+
+.sun-glow {
+    position: absolute;
+
+    right: 13%;
+    top: 11%;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 232, 157, 0.55);
+
+    box-shadow:
+        0 0 80px rgba(255, 225, 148, 0.55);
+
+    filter: blur(2px);
 
     animation:
-        blobMove 12s ease-in-out infinite alternate;
+        sunFloat 7s ease-in-out infinite;
 }
 
 
-.blob-1 {
-    width: 350px;
-    height: 350px;
+@keyframes sunFloat {
 
-    top: -100px;
-    left: -80px;
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
 
-    background: #ffd3e1;
+    50% {
+        transform:
+            translateY(-12px);
+    }
 }
 
 
-.blob-2 {
-    width: 450px;
-    height: 450px;
+/* ==============================
+   CLOUDS
+============================== */
 
-    right: -160px;
-    bottom: -140px;
+.sky-cloud {
+    position: absolute;
 
-    background: #e2d4ff;
+    width: 120px;
+    height: 55px;
+
+    opacity: 0.82;
+
+    animation:
+        cloudDrift 10s ease-in-out infinite;
+
+    filter:
+        drop-shadow(0 10px 16px rgba(108, 149, 177, 0.10));
+}
+
+
+.sky-cloud span {
+    position: absolute;
+
+    display: block;
+
+    background:
+        rgba(255, 255, 255, 0.94);
+
+    border-radius: 999px;
+}
+
+
+.sky-cloud span:nth-child(1) {
+    width: 80px;
+    height: 38px;
+
+    left: 20px;
+    bottom: 0;
+}
+
+
+.sky-cloud span:nth-child(2) {
+    width: 52px;
+    height: 52px;
+
+    left: 20px;
+    bottom: 10px;
+}
+
+
+.sky-cloud span:nth-child(3) {
+    width: 65px;
+    height: 65px;
+
+    right: 15px;
+    bottom: 4px;
+}
+
+
+.cloud-a {
+    left: 6%;
+    top: 13%;
+
+    transform: scale(0.8);
+
+    animation-delay: -3s;
+}
+
+
+.cloud-b {
+    right: 7%;
+    top: 29%;
+
+    transform: scale(1.05);
+
+    animation-delay: -6s;
+}
+
+
+.cloud-c {
+    left: 14%;
+    bottom: 12%;
+
+    transform: scale(0.65);
+
+    animation-delay: -1s;
+}
+
+
+.cloud-d {
+    right: 16%;
+    bottom: 8%;
+
+    transform: scale(0.75);
+
+    animation-delay: -8s;
+}
+
+
+.cloud-e {
+    left: 45%;
+    top: 5%;
+
+    transform: scale(0.48);
+
+    opacity: 0.55;
 
     animation-delay: -4s;
 }
 
 
-.blob-3 {
-    width: 250px;
-    height: 250px;
-
-    right: 15%;
-    top: 15%;
-
-    background: #fff0b9;
-
-    animation-delay: -7s;
-}
-
-
-@keyframes blobMove {
-
-    from {
-        transform:
-            translate(0, 0) scale(1);
-    }
-
-    to {
-        transform:
-            translate(40px, 30px) scale(1.15);
-    }
-}
-
-
-/* CLOUDS */
-
-.cloud {
-    position: absolute;
-
-    color:
-        rgba(255,
-            255,
-            255,
-            0.72);
-
-    filter:
-        drop-shadow(0 8px 10px rgba(216,
-                172,
-                193,
-                0.10));
-
-    user-select: none;
-}
-
-
-.cloud-1 {
-    top: 12%;
-    left: 8%;
-
-    font-size: 75px;
-
-    animation:
-        cloudFloat 12s ease-in-out infinite;
-}
-
-
-.cloud-2 {
-    right: 9%;
-    top: 26%;
-
-    font-size: 105px;
-
-    animation:
-        cloudFloat 15s ease-in-out infinite reverse;
-}
-
-
-.cloud-3 {
-    left: 16%;
-    bottom: 7%;
-
-    font-size: 90px;
-
-    animation:
-        cloudFloat 14s ease-in-out infinite;
-}
-
-
-@keyframes cloudFloat {
+@keyframes cloudDrift {
 
     0%,
     100% {
-        transform:
-            translateY(0) translateX(0);
+        margin-top: 0;
+        margin-left: 0;
     }
 
     50% {
-        transform:
-            translateY(-18px) translateX(15px);
+        margin-top: -12px;
+        margin-left: 14px;
     }
 }
 
 
 /* ==============================
-   FLOATING DECORATION
+   FLOATING HEARTS
 ============================== */
 
 .floating-layer {
     position: fixed;
 
     inset: 0;
+
+    z-index: 5;
 
     overflow: hidden;
 
@@ -214,6 +298,11 @@ body {
 
     user-select: none;
 
+    pointer-events: none;
+
+    text-shadow:
+        0 2px 10px rgba(255, 255, 255, 0.6);
+
     animation:
         floatUp linear forwards;
 }
@@ -229,32 +318,33 @@ body {
     }
 
     15% {
-        opacity: 0.7;
+        opacity: 0.75;
     }
 
     80% {
-        opacity: 0.55;
+        opacity: 0.6;
     }
 
     100% {
         opacity: 0;
 
         transform:
-            translateY(-115vh) rotate(25deg) scale(1.2);
+            translateY(-115vh) rotate(28deg) scale(1.25);
     }
 }
 
 
 /* ==============================
-   CARD
+   CARD WITH PHOTO BACKGROUND
 ============================== */
 
 .card {
     position: relative;
 
-    z-index: 10;
+    z-index: 20;
 
-    width: min(92vw, 470px);
+    width:
+        min(92vw, 470px);
 
     min-height: 570px;
 
@@ -262,50 +352,79 @@ body {
         55px 42px 38px;
 
     border:
-        1px solid rgba(255,
-            255,
-            255,
-            0.85);
+        1px solid rgba(255, 255, 255, 0.75);
 
     border-radius: 38px;
 
-    background:
-        rgba(255,
-            255,
-            255,
-            0.78);
-
-    backdrop-filter:
-        blur(22px);
-
-    -webkit-backdrop-filter:
-        blur(22px);
-
-    box-shadow:
-        0 30px 80px rgba(164,
-            94,
-            127,
-            0.16),
-        inset 0 1px 1px rgba(255,
-            255,
-            255,
-            0.9);
-
     text-align: center;
 
-    /*
-        Quan trọng:
-        Không đặt overflow:hidden,
-        vì nút Không được phép
-        lòi ra card khoảng 12px.
-    */
     overflow: visible;
 
+    box-shadow:
+        0 30px 90px rgba(76, 74, 91, 0.24);
+
     animation:
-        cardEnter 0.9s cubic-bezier(.2,
-            .8,
-            .2,
-            1);
+        cardEnter 0.9s cubic-bezier(.2, .8, .2, 1);
+
+    isolation: isolate;
+}
+
+
+/*
+   ẢNH background.JPG
+*/
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -2;
+
+    border-radius: inherit;
+
+    background-image:
+        url("images/background.JPG");
+
+    background-size:
+        cover;
+
+    background-position:
+        center center;
+
+    background-repeat:
+        no-repeat;
+}
+
+
+/*
+   Overlay giúp chữ dễ đọc
+   nhưng vẫn nhìn thấy ảnh.
+*/
+
+.card::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -1;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(145deg,
+            rgba(255, 250, 248, 0.64),
+            rgba(255, 239, 247, 0.58));
+
+    backdrop-filter:
+        blur(1.6px);
+
+    -webkit-backdrop-filter:
+        blur(1.6px);
 }
 
 
@@ -327,7 +446,9 @@ body {
 }
 
 
-/* RIBBON */
+/* ==============================
+   RIBBON
+============================== */
 
 .ribbon {
     position: absolute;
@@ -340,172 +461,390 @@ body {
 
     border-radius: 999px;
 
-    background: #fff0f5;
+    background:
+        rgba(255, 242, 247, 0.90);
 
-    color: #dc8da8;
+    color:
+        #c76687;
 
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 400;
 
     letter-spacing: 0.5px;
 
+    box-shadow:
+        0 5px 15px rgba(112, 78, 88, 0.06);
+
     transform:
-        rotate(4deg);
+        rotate(3deg);
 }
 
 
 /* ==============================
-   BUNNY
+   CUTE WORM
 ============================== */
 
-.bunny {
+.worm-mascot {
     position: relative;
 
-    width: 100px;
-    height: 115px;
+    width: 104px;
+    height: 130px;
 
     margin:
-        0 auto 14px;
+        6px auto 8px;
+
+    animation:
+        wormWiggle 2.8s ease-in-out infinite;
 }
 
 
-.bunny-face {
+.worm-segment {
     position: absolute;
 
-    left: 10px;
-    top: 32px;
+    border-radius: 50%;
+}
 
-    width: 80px;
-    height: 73px;
 
-    border-radius:
-        48% 48% 45% 45%;
+.segment-tail {
+    left: 36px;
+    top: 86px;
+
+    width: 40px;
+    height: 40px;
 
     background:
-        linear-gradient(150deg,
-            #fff,
-            #fff8fb);
+        linear-gradient(145deg,
+            #ff9fc3,
+            #ef6d9c);
 
     box-shadow:
-        0 8px 22px rgba(201,
-            143,
-            165,
-            0.18);
+        0 10px 20px rgba(216, 77, 123, 0.20),
+        inset 0 8px 12px rgba(150, 40, 80, 0.14);
 }
 
 
-.ear {
+.segment-mid {
+    left: 30px;
+    top: 46px;
+
+    width: 52px;
+    height: 52px;
+
+    background:
+        linear-gradient(145deg,
+            #ffb8d4,
+            #fa86ae);
+
+    box-shadow:
+        0 10px 22px rgba(216, 77, 123, 0.20),
+        inset 0 8px 12px rgba(150, 40, 80, 0.12);
+}
+
+
+.segment-head {
+    left: 20px;
+    top: 0;
+
+    width: 64px;
+    height: 64px;
+
+    background:
+        linear-gradient(145deg,
+            #ffd2e2,
+            #ff9cc0);
+
+    box-shadow:
+        0 10px 22px rgba(216, 77, 123, 0.20);
+}
+
+
+/* antennae */
+
+.worm-antenna {
     position: absolute;
 
-    width: 26px;
-    height: 62px;
+    top: -20px;
 
-    top: 1px;
+    width: 3px;
+    height: 22px;
 
-    border-radius:
-        50% 50% 45% 45%;
+    border-radius: 999px;
 
-    background: #fff;
+    background:
+        linear-gradient(180deg,
+            #ff9dc0,
+            #e2668f);
 }
 
 
-.ear::after {
+.worm-antenna::after {
     content: "";
 
     position: absolute;
 
-    inset:
-        8px 7px;
+    top: -6px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 7px;
+    height: 7px;
 
     border-radius: 50%;
 
-    background: #ffd3e1;
+    background: #e2668f;
+
+    box-shadow:
+        0 2px 4px rgba(150, 40, 80, 0.25);
 }
 
 
-.ear-left {
-    left: 19px;
+.antenna-left {
+    left: 8px;
+
+    transform-origin: bottom center;
 
     transform:
-        rotate(-13deg);
+        rotate(-22deg);
 }
 
 
-.ear-right {
-    right: 19px;
+.antenna-right {
+    right: 8px;
+
+    transform-origin: bottom center;
 
     transform:
-        rotate(13deg);
+        rotate(22deg);
 }
 
 
-.eye {
+/* bow */
+
+.worm-bow {
     position: absolute;
 
-    top: 30px;
+    top: -15px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 34px;
+    height: 20px;
+
+    z-index: 5;
+}
+
+
+.worm-bow span {
+    position: absolute;
+
+    top: 1px;
+
+    width: 16px;
+    height: 16px;
+
+    border-radius:
+        50% 50% 50% 4px;
+
+    background:
+        linear-gradient(135deg,
+            #ff8fb4,
+            #e0507e);
+}
+
+
+.worm-bow span:first-child {
+    left: 0;
+
+    transform:
+        rotate(-40deg);
+}
+
+
+.worm-bow span:last-child {
+    right: 0;
+
+    transform:
+        rotate(40deg) scaleX(-1);
+}
+
+
+.worm-bow i {
+    position: absolute;
+
+    top: 5px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #d8447a;
+
+    box-shadow:
+        0 1px 3px rgba(150, 40, 80, 0.3);
+}
+
+
+.worm-eye {
+    position: absolute;
+
+    top: 27px;
 
     width: 7px;
     height: 9px;
 
     border-radius: 50%;
 
-    background: #5b474f;
+    background:
+        #4f4139;
+
+    z-index: 4;
 }
 
 
-.eye-left {
-    left: 23px;
+.worm-eye-left {
+    left: 17px;
 }
 
 
-.eye-right {
-    right: 23px;
+.worm-eye-right {
+    right: 17px;
 }
 
 
-.blush {
+.worm-lash {
     position: absolute;
 
-    top: 43px;
+    top: 21px;
 
-    width: 16px;
-    height: 7px;
+    width: 8px;
+    height: 2px;
+
+    border-radius: 999px;
+
+    background:
+        #4f4139;
+
+    z-index: 4;
+}
+
+
+.lash-left {
+    left: 11px;
+
+    transform:
+        rotate(-35deg);
+}
+
+
+.lash-right {
+    right: 11px;
+
+    transform:
+        rotate(35deg);
+}
+
+
+.worm-blush {
+    position: absolute;
+
+    top: 37px;
+
+    width: 14px;
+    height: 6px;
 
     border-radius: 50%;
 
     background:
-        rgba(255,
-            153,
-            187,
-            0.45);
+        rgba(255, 127, 157, 0.65);
 
-    filter:
-        blur(1px);
+    filter: blur(0.5px);
+
+    z-index: 4;
 }
 
 
 .blush-left {
-    left: 10px;
+    left: 5px;
 }
 
 
 .blush-right {
-    right: 10px;
+    right: 5px;
 }
 
 
-.mouth {
+.worm-mouth {
     position: absolute;
 
     left: 50%;
-    top: 41px;
+    top: 33px;
 
     transform:
         translateX(-50%);
 
-    font-size: 15px;
+    color:
+        #745347;
 
-    color: #8e6573;
+    font-size: 14px;
+
+    z-index: 4;
+}
+
+
+/* little arms */
+
+.worm-arm {
+    position: absolute;
+
+    width: 24px;
+    height: 3px;
+
+    top: 68px;
+
+    border-radius: 999px;
+
+    background:
+        #e2668f;
+}
+
+
+.arm-left {
+    left: 6px;
+
+    transform:
+        rotate(-25deg);
+}
+
+
+.arm-right {
+    right: 6px;
+
+    transform:
+        rotate(25deg);
+}
+
+
+@keyframes wormWiggle {
+
+    0%,
+    100% {
+        transform:
+            translateY(0) rotate(-3deg);
+    }
+
+    50% {
+        transform:
+            translateY(-9px) rotate(3deg);
+    }
 }
 
 
@@ -513,32 +852,44 @@ body {
    TEXT
 ============================== */
 
+/* Hello Vân */
+
 .tiny-title {
     margin:
         3px 0 12px;
 
-    color: #d989a5;
+    color: #b94f73;
 
-    font-size: 13px;
+    font-size: 18px;
+
     font-weight: 700;
 
-    letter-spacing: 1.2px;
+    letter-spacing: 0.8px;
+
+    text-shadow:
+        0 1px 8px rgba(255, 255, 255, 0.9);
 }
 
 
 h1 {
     margin: 0;
 
-    color: #59424a;
+    color:
+        #50383f;
 
     font-size:
-        clamp(29px,
-            7vw,
-            41px);
+        clamp(26px,
+            4.2vw,
+            35px);
 
-    line-height: 1.15;
+    line-height: 1.18;
 
-    letter-spacing: -1.3px;
+    letter-spacing: -0.8px;
+
+    font-weight: 700;
+
+    text-shadow:
+        0 2px 12px rgba(255, 255, 255, 0.92);
 }
 
 
@@ -547,24 +898,39 @@ h1 span {
 
     margin-top: 3px;
 
-    color: #e786a6;
+    color:
+        #d64f7b;
+
+    font-size: 1.08em;
+
+    font-weight: 700;
 }
 
+
+/* suy nghĩ thật kỹ nhaaaa */
 
 .subtitle {
     margin:
         15px 0 0;
 
-    color: #a88b95;
+    color: #72565f;
 
-    font-size: 15px;
+    font-size: 18px;
+
+    font-weight: 500;
+
+    line-height: 1.4;
+
+    text-shadow:
+        0 1px 7px rgba(255, 255, 255, 0.95);
 }
 
 
 .mini-heart {
     display: inline-block;
 
-    color: #ef8aaa;
+    color:
+        #e24f80;
 
     animation:
         tinyHeartbeat 1s infinite;
@@ -581,7 +947,7 @@ h1 span {
 
 
 /* ==============================
-   BUTTON AREA
+   BUTTONS
 ============================== */
 
 .button-zone {
@@ -605,11 +971,6 @@ button {
 }
 
 
-/*
-    Chỉ chia sẻ kích thước.
-    KHÔNG đặt pointer-events chung.
-*/
-
 .yes-btn,
 .no-btn {
     position: absolute;
@@ -622,38 +983,31 @@ button {
     border-radius: 999px;
 
     font-size: 15px;
-    font-weight: 800;
+    font-weight: 900;
 
     user-select: none;
 }
 
 
-/* ==============================
-   YES
-============================== */
+/* YES */
 
 .yes-btn {
     left: 8px;
     right: auto;
 
-    color: white;
+    color:
+        white;
 
     background:
         linear-gradient(135deg,
-            #f59ab6,
-            #ea769d);
+            #ed6d98,
+            #d84d7b);
 
     box-shadow:
-        0 11px 24px rgba(233,
-            117,
-            156,
-            0.30);
+        0 11px 24px rgba(201, 66, 112, 0.31);
 
     cursor: pointer;
 
-    /*
-       Cóooo click bình thường.
-    */
     pointer-events: auto;
 
     z-index: 30;
@@ -669,10 +1023,7 @@ button {
         translateY(-2px) scale(1.07);
 
     box-shadow:
-        0 15px 30px rgba(233,
-            117,
-            156,
-            0.35);
+        0 15px 30px rgba(201, 66, 112, 0.38);
 }
 
 
@@ -682,50 +1033,30 @@ button {
 }
 
 
-/* ==============================
-   NO
-============================== */
+/* NO */
 
 .no-btn {
     left: auto;
     right: 8px;
 
-    color: #927b84;
+    color:
+        #644f55;
 
     background:
-        rgba(246,
-            240,
-            243,
-            0.97);
+        rgba(255, 250, 248, 0.92);
 
     box-shadow:
-        0 8px 17px rgba(100,
-            70,
-            80,
-            0.08);
+        0 8px 20px rgba(74, 54, 61, 0.16);
 
-    /*
-       Rất quan trọng:
+    pointer-events:
+        none;
 
-       Desktop không thể click/chạm
-       trực tiếp vào nút Không.
+    z-index:
+        999;
 
-       JS sẽ tự phát hiện vị trí chuột.
-    */
-    pointer-events: none;
-
-    cursor: default;
-
-    z-index: 999;
-
-    /*
-       Né rất nhanh.
-
-       Mỗi lần JS chỉ dịch 58px,
-       nhưng transition chỉ 70ms.
-    */
     transition:
         left 0.07s cubic-bezier(.2, .85, .2, 1),
+
         top 0.07s cubic-bezier(.2, .85, .2, 1);
 
     will-change:
@@ -734,13 +1065,24 @@ button {
 }
 
 
+/* những dòng tin nhắn đầu tiên */
+
 .hint {
     margin:
-        -16px 0 0;
+        -14px 0 0;
 
-    color: #c5aeb6;
+    color: #71585f;
 
-    font-size: 12px;
+    font-size: 18px;
+
+    font-weight: 500;
+
+    line-height: 1.4;
+
+    opacity: 0.92;
+
+    text-shadow:
+        0 1px 6px rgba(255, 255, 255, 0.95);
 }
 
 
@@ -749,12 +1091,14 @@ button {
 ============================== */
 
 .hidden {
-    display: none !important;
+    display:
+        none !important;
 }
 
 
 .result-screen {
-    padding-top: 15px;
+    padding-top:
+        15px;
 }
 
 
@@ -772,20 +1116,16 @@ button {
 
     border-radius: 50%;
 
-    color: #eb83a5;
+    color:
+        #d94f7d;
 
     font-size: 58px;
 
     background:
-        linear-gradient(145deg,
-            #fff0f6,
-            #fff9fc);
+        rgba(255, 245, 248, 0.90);
 
     box-shadow:
-        0 15px 35px rgba(232,
-            129,
-            164,
-            0.18);
+        0 15px 35px rgba(194, 85, 122, 0.22);
 
     animation:
         heartPulse 1.5s infinite;
@@ -815,91 +1155,9 @@ button {
 }
 
 
-/* OPTIONAL PHOTO */
-
-.photo-wrapper {
-    position: relative;
-
-    width: 180px;
-
-    margin:
-        25px auto 22px;
-
-    transform:
-        rotate(-3deg);
-
-    animation:
-        photoPop 0.75s cubic-bezier(.2,
-            1.3,
-            .3,
-            1);
-}
-
-
-.result-photo {
-    width: 180px;
-    height: 180px;
-
-    display: block;
-
-    object-fit: cover;
-
-    border:
-        9px solid white;
-
-    border-radius: 24px;
-
-    box-shadow:
-        0 18px 35px rgba(145,
-            87,
-            110,
-            0.20);
-}
-
-
-.photo-tape {
-    position: absolute;
-
-    top: -13px;
-    left: 50%;
-
-    width: 68px;
-
-    padding:
-        5px 0;
-
-    transform:
-        translateX(-50%) rotate(3deg);
-
-    background:
-        rgba(255,
-            218,
-            229,
-            0.88);
-
-    color: #d87e9b;
-}
-
-
-@keyframes photoPop {
-
-    from {
-        opacity: 0;
-
-        transform:
-            scale(0.65) rotate(-10deg);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            scale(1) rotate(-3deg);
-    }
-}
-
-
-/* MESSAGE */
+/* ==============================
+   MESSAGE
+============================== */
 
 .message-box {
     position: relative;
@@ -910,21 +1168,29 @@ button {
     padding:
         21px 26px;
 
-    max-width: 320px;
+    max-width:
+        320px;
 
-    border-radius: 23px;
+    border-radius:
+        23px;
 
-    color: #927782;
+    color:
+        #604951;
 
     background:
-        rgba(255,
-            242,
-            247,
-            0.82);
+        rgba(255, 248, 248, 0.82);
 
-    font-size: 14px;
+    box-shadow:
+        0 10px 26px rgba(80, 56, 65, 0.10);
 
-    line-height: 1.65;
+    font-size:
+        18px;
+
+    font-weight:
+        600;
+
+    line-height:
+        1.65;
 }
 
 
@@ -939,7 +1205,8 @@ button {
     left: 10px;
     top: -9px;
 
-    color: #e9a5ba;
+    color:
+        #d66b91;
 
     font-size: 42px;
 }
@@ -958,9 +1225,13 @@ button {
     margin:
         19px 0 20px;
 
-    color: #9c7b86;
+    color:
+        #624c53;
 
-    font-size: 15px;
+    font-size: 18px;
+
+    font-weight:
+        600;
 }
 
 
@@ -969,7 +1240,8 @@ button {
 
     margin-top: 8px;
 
-    color: #df8ca7;
+    color:
+        #cf557d;
 
     font-size: 20px;
 }
@@ -979,15 +1251,23 @@ button {
     padding:
         11px 22px;
 
-    border-radius: 999px;
+    border-radius:
+        999px;
 
-    background: #fff0f5;
+    background:
+        rgba(255, 244, 248, 0.92);
 
-    color: #dc83a0;
+    color:
+        #bc4d72;
 
-    font-weight: 700;
+    font-weight:
+        500;
 
-    cursor: pointer;
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 7px 18px rgba(102, 66, 79, 0.12);
 
     transition:
         transform 0.2s ease;
@@ -1046,11 +1326,6 @@ button {
 
 @media (max-width: 520px) {
 
-    body {
-        align-items: center;
-    }
-
-
     .card {
         width: 90vw;
 
@@ -1063,25 +1338,50 @@ button {
     }
 
 
+    /*
+       Trên mobile ảnh card vẫn là ảnh dọc.
+    */
+
+    .card::before {
+        background-position:
+            center center;
+    }
+
+
     .button-zone {
-        width: 265px;
+        width:
+            265px;
     }
 
 
     .yes-btn,
     .no-btn {
-        width: 112px;
+        width:
+            112px;
     }
 
 
-    .cloud-2 {
-        font-size: 70px;
+    .worm-mascot {
+        transform:
+            scale(0.92);
+    }
+
+
+    .cloud-b {
+        right: -4%;
+    }
+
+
+    .cloud-a {
+        left: -4%;
     }
 
 }
 
 
-/* VERY SMALL PHONE */
+/* ==============================
+   VERY SMALL PHONE
+============================== */
 
 @media (max-height: 670px) {
 
