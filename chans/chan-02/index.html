@@ -2,196 +2,249 @@
 <html lang="vi">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Một câu hỏi nhỏ ♡</title>
+    <meta name="theme-color" content="#05040d">
+
+    <title>Trung Thu ♡</title>
+
 
     <link rel="stylesheet" href="style.css">
+
+
+    <!-- THREE.JS IMPORT MAP -->
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three":
+                "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+
+            "three/addons/":
+                "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+        }
+    }
+    </script>
+
 </head>
+
 
 <body>
 
-    <!-- BACKGROUND -->
 
-    <div class="background">
+    <!-- ==============================
+         THREE.JS
+    =============================== -->
 
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
+    <div id="app"></div>
 
-        <div class="cloud cloud-1">☁</div>
-        <div class="cloud cloud-2">☁</div>
-        <div class="cloud cloud-3">☁</div>
+    <div class="vignette"></div>
+
+
+    <!-- ==============================
+         INTRO
+    =============================== -->
+
+    <section id="intro" class="intro">
+
+        <div class="intro-moon">
+            ☾
+        </div>
+
+
+        <p class="eyebrow">
+            ✦ một đêm trăng dành riêng cho em ✦
+        </p>
+
+
+        <h1>
+
+            Trung Thu
+
+            <span>
+                có một điều muốn gửi em
+            </span>
+
+        </h1>
+
+
+        <p class="intro-note">
+            những chiếc đèn lồng đang giấu vài điều nhỏ
+        </p>
+
+
+        <button id="startBtn" class="start-btn" type="button">
+            bước vào đêm trăng ♡
+        </button>
+
+    </section>
+
+
+
+    <!-- ==============================
+         SCENE UI
+    =============================== -->
+
+    <div id="sceneUi" class="scene-ui hidden">
+
+        <button id="backBtn" class="back-btn" type="button">
+            ← quay lại
+        </button>
+
+        <div class="scene-title">
+
+            <p>
+                中秋快乐
+            </p>
+
+            <span id="sceneSubtitle">
+                chạm vào những chiếc đèn nhấp nháy ✦
+            </span>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div id="progressBox" class="progress-box">
+
+            <span class="progress-lantern">
+                🏮
+            </span>
+
+            <span id="progressText">
+                0 / 6 lời chúc
+            </span>
+
+        </div>
+
+
+        <!-- FINAL UNLOCK -->
+
+        <button id="finalBtn" class="final-btn hidden" type="button">
+            ✦ mở lời cuối cùng ♡
+        </button>
 
     </div>
 
 
-    <!-- FLOATING HEARTS / STARS -->
 
-    <div id="floatingLayer" class="floating-layer"></div>
+    <!-- ==============================
+         NORMAL WISH
+    =============================== -->
 
+    <div id="wishOverlay" class="wish-overlay hidden">
 
-    <!-- CARD -->
+        <article class="wish-card">
 
-    <main class="card" id="card">
-
-        <div class="ribbon">
-            for you ♡
-        </div>
-
-
-        <!-- QUESTION -->
-
-        <section id="questionScreen" class="screen question-screen">
-
-            <div class="bunny">
-
-                <div class="ear ear-left"></div>
-                <div class="ear ear-right"></div>
-
-                <div class="bunny-face">
-
-                    <div class="eye eye-left"></div>
-                    <div class="eye eye-right"></div>
-
-                    <div class="blush blush-left"></div>
-                    <div class="blush blush-right"></div>
-
-                    <div class="mouth">
-                        ᴗ
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <p class="tiny-title">
-                ✦ có một câu hỏi bé xíu ✦
-            </p>
-
-
-            <h1>
-                Anh có thấy
-                <span>em xinh không?</span>
-            </h1>
-
-
-            <p class="subtitle">
-                suy nghĩ thật kỹ nhaaaa
-                <span class="mini-heart">♡</span>
-            </p>
-
-
-            <div class="button-zone" id="buttonZone">
-
-                <button class="yes-btn" id="yesBtn" type="button">
-                    Cóooo ♡
-                </button>
-
-
-                <button class="no-btn" id="noBtn" type="button" aria-label="Không">
-                    Không
-                </button>
-
-            </div>
-
-
-            <p class="hint">
-                chọn đúng sẽ có quà đó ✨
-            </p>
-
-        </section>
-
-
-        <!-- RESULT -->
-
-        <section id="resultScreen" class="screen result-screen hidden">
-
-            <div class="success-icon">
-                ♡
-            </div>
-
-
-            <p class="tiny-title">
-                em biết màaa ♡
-            </p>
-
-
-            <h1 class="result-title">
-
-                Đấy, biết ngay
-
-                <span>
-                    anh có mắt nhìn mà
-                </span>
-
-                ✨
-
-            </h1>
-
-
-            <!--
-            Nếu muốn dùng ảnh:
-
-            <div class="photo-wrapper">
-
-                <img
-                    src="images/photo.jpg"
-                    alt="cute photo"
-                    class="result-photo"
-                >
-
-                <div class="photo-tape">
-                    ♡
-                </div>
-
-            </div>
-            -->
-
-
-            <div class="message-box">
-
-                <span class="quote">
-                    “
-                </span>
-
-                <p>
-                    Cảm ơn vì đã lựa chọn
-                    đáp án duy nhất được phép
-                    lựa chọn nha =))
-                </p>
-
-                <span class="quote quote-end">
-                    ”
-                </span>
-
-            </div>
-
-
-            <p class="ending">
-
-                em mãi ủng hộ anh ạ
-
-                <span>
-                    ૮ ˶ᵔ ᵕ ᵔ˶ ა
-                </span>
-
-            </p>
-
-
-            <button class="again-btn" id="againBtn" type="button">
-                chơi lại ♡
+            <button id="wishClose" class="close-btn" type="button" aria-label="Đóng">
+                ×
             </button>
 
-        </section>
 
-    </main>
+            <div class="wish-lantern">
+                🏮
+            </div>
 
 
-    <script src="script.js"></script>
+            <p class="wish-label">
+                một lời được giấu trong đèn
+            </p>
+
+
+            <h2 id="wishTitle">
+                Lời chúc
+            </h2>
+
+
+            <div class="wish-divider">
+                ✦　☾　✦
+            </div>
+
+
+            <img id="wishImage" class="wish-image" alt="Kỷ niệm" hidden>
+
+
+            <p id="wishMessage" class="wish-message"></p>
+
+
+            <p class="wish-footer">
+                中秋快乐 ♡
+            </p>
+
+        </article>
+
+    </div>
+
+
+
+    <!-- ==============================
+         FINAL LETTER
+    =============================== -->
+
+    <div id="finalOverlay" class="final-overlay hidden">
+
+        <article class="final-card">
+
+            <button id="finalClose" class="close-btn" type="button">
+                ×
+            </button>
+
+
+            <div class="final-top">
+
+                <span>🏮</span>
+                <span class="final-moon">☾</span>
+                <span>🏮</span>
+
+            </div>
+
+
+            <p class="final-cn">
+                中 秋 快 乐
+            </p>
+
+
+            <h2 id="finalTitle">
+                Em đã tìm thấy tất cả rồi ♡
+            </h2>
+
+
+            <div class="final-divider">
+                ✦　☾　✦
+            </div>
+
+
+            <img id="finalImage" class="final-image" alt="Kỷ niệm đặc biệt" hidden>
+
+
+            <p id="finalMessage" class="final-message"></p>
+
+
+            <button id="resetBtn" class="reset-btn" type="button">
+                chơi lại từ đầu ♡
+            </button>
+
+        </article>
+
+    </div>
+
+
+
+    <!-- ==============================
+         HINT
+    =============================== -->
+
+    <div id="moveHint" class="move-hint hidden">
+        🏮 đèn nhấp nháy đang giấu một lời chúc ✦
+    </div>
+
+
+
+    <script type="module" src="script.js"></script>
 
 </body>
 
