@@ -120,7 +120,7 @@ scene.fog =
 
 const camera =
     new THREE.PerspectiveCamera(
-        42,
+        46,
         innerWidth / innerHeight,
         0.1,
         100
@@ -130,16 +130,16 @@ const camera =
 const cameraStart =
     new THREE.Vector3(
         0,
-        3.3,
-        mobile ? 15.5 : 15
+        mobile ? 3.0 : 3.15,
+        mobile ? 17.0 : 16.0
     );
 
 
 const cameraEnd =
     new THREE.Vector3(
         0,
-        2.55,
-        mobile ? 11.8 : 10.8
+        mobile ? 2.35 : 2.45,
+        mobile ? 14.0 : 12.2
     );
 
 
@@ -1467,6 +1467,16 @@ function makeLantern(
 
 const interactiveLanterns = [];
 
+/* ==========================================
+   SECRET LAST LANTERN
+========================================== */
+
+const SECRET_WISH_INDEX =
+    lanternWishes.length - 1;
+
+let secretLanternRevealed =
+    false;
+
 
 /*
    Mỗi wish tương ứng một vị trí.
@@ -1511,11 +1521,12 @@ const lanternSlotsDesktop = [
         scale: 1.00
     },
 
+    /* ĐÈN BÍ MẬT */
     {
-        x: 2.25,
-        y: 5.10,
-        z: 1.4,
-        scale: 1.00
+        x: -0.45,
+        y: 2.50,
+        z: 2.70,
+        scale: 1.25
     }
 
 ];
@@ -1579,9 +1590,25 @@ lanternWishes
             lantern.userData.wish =
                 wish;
 
-
             lantern.userData.wishIndex =
                 index;
+
+            lantern.userData.isSecret =
+                index === SECRET_WISH_INDEX;
+
+
+            /*
+               Ẩn chiếc đèn cuối.
+            */
+
+            if (
+                lantern.userData.isSecret
+            ) {
+
+                lantern.visible =
+                    false;
+
+            }
 
 
             world.add(
@@ -2122,6 +2149,17 @@ function raycastLantern(
 
     const objects =
         interactiveLanterns
+
+            /*
+               Chỉ raycast những đèn
+               đang thực sự xuất hiện.
+            */
+
+            .filter(
+                item =>
+                    item.object.visible
+            )
+
             .map(
                 item =>
                     item.object
@@ -2419,8 +2457,161 @@ let wishOpen =
 let finalOpen =
     false;
 
+/* ==========================================
+   REVEAL SECRET LANTERN
+========================================== */
+
+function revealSecretLantern() {
+
+    if (
+        secretLanternRevealed
+    ) {
+        return;
+    }
+
+
+    const secretItem =
+        interactiveLanterns.find(
+            item =>
+                item.object
+                    .userData
+                    .isSecret
+        );
+
+
+    if (
+        !secretItem
+    ) {
+        return;
+    }
+
+
+    secretLanternRevealed =
+        true;
+
+
+    const lantern =
+        secretItem.object;
+
+
+    /*
+       Cho xuất hiện.
+    */
+
+    lantern.visible =
+        true;
+
+
+    /*
+       Bắt đầu rất nhỏ.
+       Animation loop hiện tại sẽ
+       tự kéo nó về baseScale.
+    */
+
+    lantern.scale.setScalar(
+        0.05
+    );
+
+
+    /*
+       Sáng nổi bật khi vừa xuất hiện.
+    */
+
+    lantern
+        .userData
+        .glowMaterial
+        .opacity =
+        1;
+
+
+    lantern
+        .userData
+        .bodyMaterial
+        .emissiveIntensity =
+        4;
+
+
+    sceneSubtitle.textContent =
+        "ơ... hình như còn một chiếc đèn nữa ♡";
+
+}
 
 function updateProgress() {
+
+    /*
+       Số đèn thường:
+       không tính đèn bí mật.
+    */
+
+    const normalLanterns =
+        interactiveLanterns.filter(
+            item =>
+                !item.object
+                    .userData
+                    .isSecret
+        );
+
+
+    const normalTotal =
+        normalLanterns.length;
+
+
+    /*
+       Có bao nhiêu đèn thường
+       đã được mở.
+    */
+
+    const normalOpened =
+        normalLanterns.filter(
+            item =>
+                openedWishIndexes.has(
+                    item.object
+                        .userData
+                        .wishIndex
+                )
+        ).length;
+
+
+    /*
+       GIAI ĐOẠN 1:
+       chưa hiện đèn bí mật.
+    */
+
+    if (
+        !secretLanternRevealed
+    ) {
+
+        progressText.textContent =
+            `${normalOpened} / ${normalTotal} lời chúc`;
+
+
+        /*
+           Đã mở đủ 5 đèn đầu.
+        */
+
+        if (
+            normalOpened
+            ===
+            normalTotal
+        ) {
+
+            revealSecretLantern();
+
+
+            progressText.textContent =
+                `${normalOpened} / ${interactiveLanterns.length} lời chúc`;
+
+        }
+
+
+        return;
+    }
+
+
+    /*
+       GIAI ĐOẠN 2:
+       chiếc thứ 6 đã xuất hiện.
+    */
 
     const count =
         openedWishIndexes.size;
@@ -2433,6 +2624,10 @@ function updateProgress() {
     progressText.textContent =
         `${count} / ${total} lời chúc`;
 
+
+    /*
+       Đã đọc luôn chiếc cuối.
+    */
 
     if (
         count === total
@@ -2698,6 +2893,8 @@ resetBtn.addEventListener(
     function () {
 
         openedWishIndexes.clear();
+        secretLanternRevealed =
+            false;
 
 
         interactiveLanterns
@@ -2743,6 +2940,15 @@ resetBtn.addEventListener(
                         .set(
                             0xff5a2c
                         );
+
+                    if (
+                        lantern.userData.isSecret
+                    ) {
+
+                        lantern.visible =
+                            false;
+
+                    }
 
                 }
             );
@@ -3033,19 +3239,13 @@ function animate(
 
 
     camera.lookAt(
+        pointerX * 0.11,
 
-        pointerX
-        *
-        0.11,
-
-        1.25
+        1.35
         -
-        pointerY
-        *
-        0.07,
+        pointerY * 0.07,
 
         0
-
     );
 
 

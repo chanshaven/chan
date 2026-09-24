@@ -5,10 +5,10 @@
 export const lanternWishes = [
 
     {
-        title: "Một điều nhỏ muốn nói ♡",
+        title: "Thôn lành pôn lì ♡",
 
         message:
-            "Mong em luôn vui vẻ, bình an và gặp thật nhiều điều dịu dàng trong những ngày sắp tới.",
+            "Ông nậu nói chiều nào cũng chở em đi chơi kìa, cho em ra đồng hít cít dịt.",
 
         image: "images/wish-01.jpg"
         /*
@@ -23,20 +23,20 @@ export const lanternWishes = [
 
 
     {
-        title: "Dưới ánh trăng này 🌙",
+        title: "Trung thu đầu tiên của em mà em chả biết gì 🌙",
 
         message:
-            "Chúc cho những ngày sau này, dù bận rộn hay mệt mỏi, chúng ta vẫn luôn có những khoảnh khắc bình yên bên nhau.",
+            "Bà nậu đau tay nên k thấy ảnh nào riêng với em hết. Em chúc bà nậu khỏi bệnh đau tay + lo âu",
         image: "images/wish-02.jpg"
         // image: null
     },
 
 
     {
-        title: "Cảm ơn em 🏮",
+        title: "Đây rồi đây rồi kho bạc của em đây rồi 🏮",
 
         message:
-            "Cảm ơn em vì đã xuất hiện và khiến những ngày rất bình thường cũng có thể trở thành những ngày đáng nhớ.",
+            "Cô 3 là con quỷ!",
 
         image: "images/wish-03.jpg"
         // image: null
@@ -44,10 +44,10 @@ export const lanternWishes = [
 
 
     {
-        title: "Một lời chúc bé xíu ✨",
+        title: "Bầu trời của em ✨",
 
         message:
-            "Mong những điều em mong chờ sẽ từ từ trở thành hiện thực, và những điều làm em buồn sẽ nhẹ nhàng trôi qua.",
+            "Trừ đèn lồng và ánh điện sân bay ra thì mẹ là người mà em yêu nhất",
 
         // image: null
         image: "images/wish-04.jpg"
@@ -55,10 +55,10 @@ export const lanternWishes = [
 
 
     {
-        title: "Điều anh mong nhất ♡",
+        title: "Ông lọi nào hay ở chung nhà với mình ♡",
 
         message:
-            "Anh chỉ mong em luôn khỏe mạnh, được yêu thương thật nhiều và vẫn có thể cười thật tươi như bây giờ.",
+            "Thấy cha này hay ở chung nhà với mình, lâu lâu thấy mặt, nhiều hơn mấy người khác, chắc cũng thân thiết lắm đây",
 
         /*
         Ví dụ sau này:
@@ -72,10 +72,10 @@ export const lanternWishes = [
 
 
     {
-        title: "Chiếc đèn cuối cùng 🏮",
+        title: "Cười đi, nhìn cái gì mà nhìn 🏮",
 
         message:
-            "Nếu em đã tìm được chiếc đèn này thì gần như em đã nghe hết những điều anh muốn gửi trong đêm Trung Thu rồi đó.",
+            "Trung thu dủi dẻ nhen",
 
         // image: null
         image: "images/final.jpg"
@@ -91,18 +91,12 @@ export const lanternWishes = [
 export const finalLetter = {
 
     title:
-        "Em đã tìm thấy tất cả rồi ♡",
+        "Trung thu dui dẻ ♡",
 
     message:
-        `Trung Thu này anh không chỉ muốn chúc em một ngày vui.
-
-Anh mong những mùa trăng sau này, dù chúng ta đang ở đâu, vẫn sẽ có những điều nhỏ bé để cùng nhau nhớ lại.
-
-Cảm ơn em vì đã đi qua từng chiếc đèn lồng, đọc từng lời anh giấu trong đó.
-
-Chúc em luôn bình an, luôn hạnh phúc và luôn được yêu thương thật nhiều.
-
-Trung Thu vui vẻ ♡`,
+        `Trung thu đầu tiên của em lại ở nơi xa, em cũng không biết là ngày gì, ở VN là em được thấy đèn lồng khắp nơi rồi, còn được xem múa lân nữa. Bên này ba mẹ toàn dắt em đi linh tinh công viên 
+        
+        Cả nhà đón trung thu dui dẻ nghen ♡🏮♡🏮♡🏮♡🏮♡`,
 
     /*
        Muốn ảnh cuối:
