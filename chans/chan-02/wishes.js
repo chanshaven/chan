@@ -1,109 +1,154 @@
-/* ==========================================
-   LANTERN WISHES
-========================================== */
-
 export const lanternWishes = [
 
     {
-        title: "Thôn lành pôn lì ♡",
+        question:
+            "Lần đầu tiên em thấy anh trong chiếc áo màu gì",
+
+        options: [
+            "Trắng",
+            "Đen",
+            "Xanh",
+            "Cam"
+        ],
+
+        correctIndex: 3,
+
+        title:
+            "Đúng rồi đó 🏮",
 
         message:
-            "Ông nậu nói chiều nào cũng chở em đi chơi kìa, cho em ra đồng hít cít dịt.",
+            "🌕 Chúc em Trung Thu vui vẻ, luôn xinh đẹp và lúc nào cũng cười thật nhiều.",
 
-        image: "images/wish-01.jpg"
-        /*
-           Nếu muốn có ảnh:
-
-           image: "images/wish-01.jpg"
-
-           Nếu không:
-        */
-        // image: null
+        image: "images/wish-01.jpeg"
     },
 
 
     {
-        title: "Trung thu đầu tiên của em mà em chả biết gì 🌙",
+        question:
+            "Thành phố đầu tiên nơi mình gặp lại.",
+
+        options: [
+            "Paris",
+            "Hà Nội",
+            "Strasbourg"
+        ],
+
+        correctIndex: 0,
+
+        title:
+            "Qua ải ✨",
 
         message:
-            "Bà nậu đau tay nên k thấy ảnh nào riêng với em hết. Em chúc bà nậu khỏi bệnh đau tay + lo âu",
-        image: "images/wish-02.jpg"
-        // image: null
+            "🥮 Chúc em có một mùa Trung Thu thật ngọt ngào, bánh ngon, trăng đẹp và tâm trạng luôn vui.",
+
+        image: "images/wish-02.jpeg"
     },
 
 
     {
-        title: "Đây rồi đây rồi kho bạc của em đây rồi 🏮",
+        question:
+            "Mình đã chọn ngày nào xem là ngày bắt đầu mối quan hệ?",
+
+        options: [
+            "21/6",
+            "9/8",
+            "1/9",
+            "13/9"
+        ],
+
+        correctIndex: 3,
+
+        title:
+            "Nhớ giỏi đấy 🌙",
 
         message:
-            "Cô 3 là con quỷ!",
+            "❤️ Chúc em mọi điều tốt đẹp nhất, hôm nay vui vẻ, ngày mai cũng vui vẻ, và ngày nào cũng có người thương em.",
 
-        image: "images/wish-03.jpg"
-        // image: null
+        image: "images/wish-03.jpeg"
     },
 
 
     {
-        title: "Bầu trời của em ✨",
+        question:
+            "Anh từng nói thích em trong màu tóc nào nhất?",
+
+        options: [
+            "Đen",
+            "Vàng",
+            "Hồng"
+        ],
+
+        correctIndex: 0,
+
+        title:
+            "Ừ anh thích tóc đen ♡",
 
         message:
-            "Trừ đèn lồng và ánh điện sân bay ra thì mẹ là người mà em yêu nhất",
+            "🌙 Chúc em đêm nay ngắm trăng thật đẹp, ăn bánh thật ngon, và nhớ là có một người đang nhớ em.",
 
-        // image: null
-        image: "images/wish-04.jpg"
+        image: "images/wish-04.jpeg"
     },
 
 
     {
-        title: "Ông lọi nào hay ở chung nhà với mình ♡",
+        question:
+            "Em có tin vào mối nhân duyên này không?",
+
+        options: [
+            "..."
+        ],
+
+        correctIndex: 0,
+
+        title:
+            "Ngoan cố 🏮",
 
         message:
-            "Thấy cha này hay ở chung nhà với mình, lâu lâu thấy mặt, nhiều hơn mấy người khác, chắc cũng thân thiết lắm đây",
+            "🥰 Chúc em Trung Thu này nhận được thật nhiều yêu thương, thật nhiều niềm vui, và một chút nhớ anh nữa.",
 
-        /*
-        Ví dụ sau này:
-
-        image: "images/wish-05.jpg"
-        */
-
-        // image: null
-        image: "images/wish-05.jpg"
+        image: "images/wish-05.jpeg"
     },
 
 
+    /* ======================================
+       CÂU CUỐI ĐẶC BIỆT
+    ====================================== */
+
     {
-        title: "Cười đi, nhìn cái gì mà nhìn 🏮",
+        question:
+            "Em yêu anh bao nhiêu?",
+
+        options: [
+            "∞",
+            "Đáp án khác"
+        ],
+
+        correctIndex: 0,
+
+        runawayWrongAnswer: true,
+
+        title:
+            "Anh cũng yêu em nhiều 🏮",
 
         message:
-            "Trung thu dủi dẻ nhen",
+            "✨ Người ta nói Trung Thu là dịp để ngắm trăng, còn anh thì thấy em mới là thứ đáng để ngắm nhất. 中秋快乐",
 
-        // image: null
-        image: "images/final.jpg"
+        image:
+            "images/wish-06.jpeg"
     }
 
 ];
 
 
-/* ==========================================
-   FINAL LETTER
-========================================== */
-
 export const finalLetter = {
 
     title:
-        "Trung thu dui dẻ ♡",
+        "Chúc em đón trung thu xa nhà nhưng vui vẻ và ấm áp ♡",
 
     message:
-        `Trung thu đầu tiên của em lại ở nơi xa, em cũng không biết là ngày gì, ở VN là em được thấy đèn lồng khắp nơi rồi, còn được xem múa lân nữa. Bên này ba mẹ toàn dắt em đi linh tinh công viên 
-        
-        Cả nhà đón trung thu dui dẻ nghen ♡🏮♡🏮♡🏮♡🏮♡`,
+        `🌕 Trăng có lúc tròn lúc khuyết, nhưng anh và tình yêu của anh thì vẫn luôn như thế.
+        Mong em luôn vui, luôn hạnh phúc, và luôn ở bên anh. 中秋快乐 ❤️`,
 
-    /*
-       Muốn ảnh cuối:
-
-       image: "images/final.jpg"
-    */
-
-    image: null
+    image: "images/final.jpeg"
 
 };
