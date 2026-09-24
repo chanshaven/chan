@@ -25,12 +25,12 @@ export const lanternWishes = [
 
     {
         question:
-            "Thành phố đầu tiên nơi mình gặp lại.",
+            "Vết hickey đầu tiên là ở đâu?",
 
         options: [
-            "Paris",
-            "Hà Nội",
-            "Strasbourg"
+            "Cổ",
+            "Ngực",
+            "Bụng"
         ],
 
         correctIndex: 0,
@@ -106,7 +106,7 @@ export const lanternWishes = [
         message:
             "🥰 Chúc em Trung Thu này nhận được thật nhiều yêu thương, thật nhiều niềm vui, và một chút nhớ anh nữa.",
 
-        image: "images/wish-05.jpeg"
+        image: "images/wish-05.jpg"
     },
 
 
@@ -134,7 +134,7 @@ export const lanternWishes = [
             "✨ Người ta nói Trung Thu là dịp để ngắm trăng, còn anh thì thấy em mới là thứ đáng để ngắm nhất. 中秋快乐",
 
         image:
-            "images/wish-06.jpeg"
+            "images/wish-06.jpg"
     }
 
 ];
